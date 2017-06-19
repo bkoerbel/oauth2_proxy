@@ -1,15 +1,11 @@
 FROM buildpack-deps:jessie-curl
 MAINTAINER bkoerbel@gmail.com
 
-ENV OAUTH2_RELEASE_TAG=V2.2
-ENV OAUTH2_PROXY_VERSION=2.2.0
-ENV GOLANG_VERSION=1.8.1
-ENV ARCHIVE=oauth2_proxy-$OAUTH2_PROXY_VERSION.linux-amd64.go$GOLANG_VERSION
 ENV PATH /opt/oauth2-proxy/bin:$PATH
 
-RUN mkdir -p /opt/oauth2-proxy/bin && mkdir /opt/oauth2-proxy/etc && \
+RUN mkdir -p /opt/oauth2-proxy/bin && \
     curl -L -k --silent \
-      https://github.com/bitly/oauth2_proxy/releases/download/$OAUTH2_RELEASE_TAG/$ARCHIVE.tar.gz  | \
+      https://github.com/bitly/oauth2_proxy/releases/download/v2.2/oauth2_proxy-2.2.0.linux-amd64.go1.8.1.tar.gz  | \
       tar xz --strip-components 1 -C /opt/oauth2-proxy/bin
 
 ENTRYPOINT ["oauth2_proxy"]
